@@ -67,7 +67,7 @@ verb can have a quantity like `3x` `9dl`
 * insert mode: `i` insert(before) `o` open(new line) `a` append(after)
     * `ea` frequently used
     * `^j` new line `^t` tab line `^d` revert tab line
-    * `^u` delete left
+    * `^u` delete left `^w` delete left word
     * `<insert>` toggle replace mode
 
 * replace mode: `R`
