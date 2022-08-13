@@ -1,4 +1,4 @@
-## Essential
+## ESSENTIAL
 
 ### motion
 
@@ -181,12 +181,13 @@ verb can have a quantity like `3x` `9dl`
     * `s` `v` split `H` `J` resplit
     * `x` exchange
     * `<arrow>`: move window
-
+    * `f` Split current window in two.  Edit file name under cursor.
 4. vsplit: `:vsplit` `:vnew`
 5. tab:
 
 * `:tabnew` `:tabedit` `:tabclose` `:tabonly` `:tabmove` `:tabnext` `:tabprevious`
-* `gt` `gT` jump tab `5gt` jump tab 5
+* `gt` `gT` jump tab `5gt` jump tab 5 `ctrl-w gt/T` switch tab
+* `ctrl-w gf`:Open a new tab page and edit the file name under the cursor.
 
 * options:
     * `winheight`
@@ -233,16 +234,19 @@ _ - black hole register
 * `>%` indent block `>ib` inner block `>at` tag
 * `==` indent current line `=$` indent all `=%` indent to block
 * `]p` paste and indent
+
 ### format
+
 * `gq+`, `help gq`
 * `gqap`: `gq` format `ap` a paragraph
 * `gggqG`: `gg` go file start `gq` format `G` end of file
+
 ### help
 
     * `:help`: show help
     * `:help w` `help ctrl-d`: show help of `command`s
 
-## Custom
+## CUSTOM
 
 ### vimrc
 
@@ -306,7 +310,7 @@ press `F5`
 
 press `\ + p` quickly
 
-## Plugin
+## PLUGIN SYS
 
 There are two types of plugins:
 >
