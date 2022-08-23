@@ -44,8 +44,7 @@ verb can have a quantity like `3x` `9dl`
 
 1. list:
 
-* cut/delete `d+`: `dd` `dw` `d$`=`D`, `daw` delete a word
-* change`c` (delete and enter insert): `cc`=`S` `cl`=`s` `c$`=`C` `caw`
+* cut/delete `d+` where `+`= `dd` `dw` `d$`=`D`, `daw` delete a word
 * join line `J`
 * delete at cursor: `x`
 * copy/yank `y+`: `yy` `yw` `y$`
@@ -53,9 +52,11 @@ verb can have a quantity like `3x` `9dl`
 * replace 1 char: `r`: `ra` replace to `a`
 * undo `u`/ undo line `U` redo `ctrl-r`
 * `.` repeat last change
-* g-command like `gj` see `:help g`
+* g-command like `gJ` see `:help g`
     * `g~~` toggle case
     * `gU` upper case `gUe` `gu` lower case `guu`
+* change`c` (delete and enter insert): `cc`=`S` `cl`=`s` `c$`=`C` `caw`
+
 
 2. object:
 
@@ -66,7 +67,9 @@ verb can have a quantity like `3x` `9dl`
 
 * insert mode: `i` insert(before) `o` open(new line) `a` append(after)
     * `ea` frequently used
-    * `^j` new line `^t` tab line `^d` revert tab line
+    * `^n` next find
+    * `^j` new line 
+    * `^t` tab line `^d` revert tab line `^i` insert tab
     * `^u` delete left `^w` delete left word
     * `<insert>` toggle replace mode
 
@@ -140,13 +143,16 @@ verb can have a quantity like `3x` `9dl`
 * show file info: `ctrl-g`
 * quit with write: `ZZ`
 * commands, start with `:`
-    * `:!` external command: `:!ls ~/dev`
+    * `:!` shell command: `:!ls ~/dev`
     * `:set` set var
         * `:set ic`=`set ignorecase`
         * `:set history=1000` set value, `:set history` get value
         * `:set iskeyword&` set to default value
     * `:options` show options
     * `<ctrl-d>/<tab>` auto complete
+
+### completion
+
 
 ### file\[s\]
 
@@ -182,11 +188,13 @@ verb can have a quantity like `3x` `9dl`
     * `x` exchange
     * `<arrow>`: move window
     * `f` Split current window in two.  Edit file name under cursor.
+        * `d` goto definition
+        
 4. vsplit: `:vsplit` `:vnew`
 5. tab:
 
 * `:tabnew` `:tabedit` `:tabclose` `:tabonly` `:tabmove` `:tabnext` `:tabprevious`
-* `gt` `gT` jump tab `5gt` jump tab 5 `ctrl-w gt/T` switch tab
+* `gt` `gT` jump tab `5gt` jump tab 5 
 * `ctrl-w gf`:Open a new tab page and edit the file name under the cursor.
 
 * options:

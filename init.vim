@@ -65,7 +65,7 @@ colorscheme gruvbox
 
 " --- NERDTree
 " https://github.com/preservim/nerdtree
-nnoremap <leader>n :NERDTreeFocus<CR> " <leader>=`\`
+nnoremap <leader>t :NERDTreeFocus<CR>
 " nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>

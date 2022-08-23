@@ -27,8 +27,10 @@ https://github.com/junegunn/vim-plug#neovim
 * `m` menu
 * `cd` set cwd
 * `:Bookmark [<name>]` set bookmark
-
-https://github.com/preservim/nerdtree
+* `ctrl-t` toggle NERDTree
+* `ctrl-f` find and reveal the file for the active buffer in the NERDTree window.
+  https://github.com/preservim/nerdtree
+* `<leader>t` focus NERDTree
 
 ### Auto-pairs
 
@@ -38,4 +40,4 @@ https://github.com/jiangmiao/auto-pairs
 
 https://github.com/preservim/nerdcommenter
 
-[count]<leader>ci |NERDCommenterInvert|
+[count]`<leader>ci` |NERDCommenterInvert|
