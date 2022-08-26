@@ -63,30 +63,34 @@ verb can have a quantity like `3x` `9dl`
 * `a+` a object, `aw` a word `as` a sentence `ab` a block`()` `aB` a block `{}`
 * `i+` inner object, `iw` inner word `is` inner sentence `ib` inner block
 
-### mode
+### insert mode
 
 * insert mode: `i` insert(before) `o` open(new line) `a` append(after)
-    * `ea` frequently used
-    * `^n` next find
-    * `^j` new line 
-    * `^t` tab line `^d` revert tab line `^i` insert tab
-    * `^u` delete left `^w` delete left word
-    * `<insert>` toggle replace mode
+* `ea` frequently used
+* `^n` next find
+* `^j` new line
+* `^t` tab line `^d` revert tab line `^i` insert tab
+* `^u` delete left `^w` delete left word
+* `^rx` use reg x to paste/yank
+* `<insert>` toggle replace mode
 
 * replace mode: `R`
 
-* visual mode(marking mode):
-    * `v`: enter visual mode `V` enter visual line mode
-    * `ctrl+v`: enter visual block mode
-        * `o O`: move cursor to corner
-    * `<>` shift left/right (with tab)
-    * `u U ~` case
-    * `y d` copy/delete
+### visual mode(marking mode)
+
+* `v`: enter visual mode `V` enter visual line mode
+* `ctrl+v`: enter visual block mode
+    * `o O`: move cursor to corner
+* `<>` shift left/right (with tab)
+* `u U ~` case
+* `y d` copy/delete
 
 ### mark
 
 * `&grave;&grave;` goto last jump `"` last edit `.` last change
+* `&grave;`=`'`: `''` `'"` `'.`
 * `&grave;a` goto a
+* `'0` goto last work cross session
 * `ma` set mark a; mark name [0-9a-z]
 * `:marks` list marks `:jump` jump history `:changes` change history
 * `y&grave;a` yank to a mark
@@ -132,7 +136,10 @@ verb can have a quantity like `3x` `9dl`
     * `/\<the\>` `\< \>` word boundary
     * `^$` line boundary
     * `. \s \d \w \a` `\l=lower \u=upper` same as regex
-
+    * `\+`,`/a*`,`/\(ab\)*`,`/ab\{3,5}`
+    * `/folders\=` match folder[s]
+    * `/default/2`,`/const/e+1`,`/const/b+2`,`?const?e-2`: search offset(useful for macro)
+    *
 6. option
     * `hlsearch`=`hls` `nohlsearch`
     * `wrapscan`
@@ -153,6 +160,38 @@ verb can have a quantity like `3x` `9dl`
 
 ### completion
 
+`ctrl-p` show completion `ctrl-n` rev
+
+### session
+
+```
+:mksession vimbook.vim
+:source vimbook.vim
+vim -S vimbook.vim
+```
+
+* shada abbr for shared data
+    * persist marks, reg, jump...
+
+```
+:wshada! ~/.local/share/nvim/shada/secret.shada
+:rshada! ~/.local/share/nvim/shada/secret.shada
+```
+
+* view store like `set number` `set hl` status
+
+```
+:mkview
+:loadview
+:mkview ~/.config/nvim/main.vim
+:source ~/.config/nvim/main.vim
+```
+
+* modeline `help usr_21.txt`
+
+```
+/* vim:set shiftwidth=4: */ ~
+```
 
 ### file\[s\]
 
@@ -162,13 +201,24 @@ verb can have a quantity like `3x` `9dl`
 * `:r` read and merge in `:r !ls` read the stdout of ls
 * `:w` write file: `:w README.md` `:write >> logfile` append
 * `:saveas` `:edit`
+* `:oldfiles` recently
+  2.multi file
 
-2.multi file
-
-* `:ls`
+* `:ls` `:buffers` buffers is what the files you're editing
 * `:args` `:args FILES`
 * `:next` `:prev` `first` `:last`
 * quick jump, to last `<ctrl+^>`
+
+3.explorer
+
+* `:edit .` `:Explore`
+
+4.search path
+
+* `gf` search under cursor
+    * `:set path+=c:/prog/include` `:set path`
+    * `:find a.txt`
+    *
 
 ### multi-window
 
@@ -187,14 +237,14 @@ verb can have a quantity like `3x` `9dl`
     * `s` `v` split `H` `J` resplit
     * `x` exchange
     * `<arrow>`: move window
-    * `f` Split current window in two.  Edit file name under cursor.
+    * `f` Split current window in two. Edit file name under cursor.
         * `d` goto definition
-        
+
 4. vsplit: `:vsplit` `:vnew`
 5. tab:
 
 * `:tabnew` `:tabedit` `:tabclose` `:tabonly` `:tabmove` `:tabnext` `:tabprevious`
-* `gt` `gT` jump tab `5gt` jump tab 5 
+* `gt` `gT` jump tab `5gt` jump tab 5
 * `ctrl-w gf`:Open a new tab page and edit the file name under the cursor.
 
 * options:
@@ -243,7 +293,7 @@ _ - black hole register
 * `==` indent current line `=$` indent all `=%` indent to block
 * `]p` paste and indent
 
-### format
+### format/reformat
 
 * `gq+`, `help gq`
 * `gqap`: `gq` format `ap` a paragraph
@@ -289,6 +339,7 @@ set listchars=tab:>-,trail:-  # set tab style
 
 ```
 autowrite
+:set iskeyword+=- "make 'a-quick-mode' a word
 ```
 
 ```
@@ -299,7 +350,6 @@ syntax on
 
 * `$VIMRUNTIME/colors` path of theme
 * `:colorscheme evening`
-*
 
 ### keymapping
 
@@ -307,16 +357,15 @@ like shortcut or macro
 
 ```
 :map <F5> i{<Esc>ea}<Esc>
+:map Q gq
 ```
-
-press `F5`
 
 ```
 :map \p i(<Esc>ea)<Esc>
 :map \c i{<Esc>ea}<Esc>
 ```
 
-press `\ + p` quickly
+* press `\ + p` quickly
 
 ## PLUGIN SYS
 
