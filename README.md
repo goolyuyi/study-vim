@@ -85,7 +85,7 @@ verb can have a quantity like `3x` `9dl`
 * `u U ~` case
 * `y d` copy/delete
 
-### mark
+### mark `'
 
 * `&grave;&grave;` goto last jump `"` last edit `.` last change
 * `&grave;`=`'`: `''` `'"` `'.`
@@ -95,7 +95,7 @@ verb can have a quantity like `3x` `9dl`
 * `:marks` list marks `:jump` jump history `:changes` change history
 * `y&grave;a` yank to a mark
 
-### search and replace
+### search and substitute(replace)
 
 1. search:
 
@@ -113,13 +113,14 @@ verb can have a quantity like `3x` `9dl`
     * `:s/thee/the` default is cur line
         * `%s/thee/the`  `%` all line
     * `:s/thee/the/gc` replace all and confirm
-* flag: `g` all, `c` confirm, `p` print, `i/I` case ignore
+* flag: `g` all, `c` confirm, `p` print, `i/I` case ignore,`e` it not error if not find
 
 3. range:
 
 * `1,5` line 1 to 5, `5` line 5
 * `.`: cur line, `.w` write cur line
-* `.,$` cur to last line `.,.+4` cur to next 4 line `%` the whole file
+* `%` the whole file, `0` start `$` last of line
+    * `.,$` cur to last line `.,.+4` cur to next 4 line
 * `'t,'b` from mark t to mark b
 * `'<,'>` visual selection, `<` is visual start, `>` is visual end
 * `.,/patter` cur to next line that match pattern `.,?pattern` cur to prev line that match pattern
@@ -139,7 +140,8 @@ verb can have a quantity like `3x` `9dl`
     * `\+`,`/a*`,`/\(ab\)*`,`/ab\{3,5}`
     * `/folders\=` match folder[s]
     * `/default/2`,`/const/e+1`,`/const/b+2`,`?const?e-2`: search offset(useful for macro)
-    *
+    * `:help usr_27.txt`
+
 6. option
     * `hlsearch`=`hls` `nohlsearch`
     * `wrapscan`
@@ -199,7 +201,10 @@ vim -S vimbook.vim
 
 * `:file a.txt` change file name
 * `:r` read and merge in `:r !ls` read the stdout of ls
+    * `:0read sample.py` read at line 0
 * `:w` write file: `:w README.md` `:write >> logfile` append
+    * `:.,$write! tempo`
+    * `:.write >>collection` append write
 * `:saveas` `:edit`
 * `:oldfiles` recently
   2.multi file
@@ -232,6 +237,7 @@ vim -S vimbook.vim
 
 2. `ctrl-w`: input window command
     * `w`: jump window `q`: close window
+    * `T`: move current window to new tab!
     * `<arrow>` move window
     * `+/-`: window size
     * `s` `v` split `H` `J` resplit
@@ -250,7 +256,7 @@ vim -S vimbook.vim
 * options:
     * `winheight`
 
-### macro, register
+### macro, register @ "
 
 1. register(think as named clipboard)
 
@@ -301,8 +307,10 @@ _ - black hole register
 
 ### help
 
-    * `:help`: show help
-    * `:help w` `help ctrl-d`: show help of `command`s
+* `:help`: show help
+* `:help w` `help ctrl-d`: show help of `command`s
+* `:Man curl` man page
+* `K`=`:Man` on cursor
 
 ## CUSTOM
 
@@ -353,6 +361,36 @@ syntax on
 
 ### keymapping
 
+- `:map {lhs} {rhs}` This allows for nested and recursive use of mappings.
+- `:noremap {lhs}{rhs}` Disallow mapping of {rhs}, to avoid nested and recursive mappings. Often used to redefine a
+  command.
+- `:unmap {lhs}` unmap
+- `:mapc` Remove ALL mappings
+- `:map` list all
+
+- vim allow quickly keystroke seq like `aa`,`jk`,but
+
+```
+:imap aa foo
+:imap aaa bar
+```
+
+is ambiguous
+
+```
+:map   :noremap  :unmap     Normal, Visual, Select, Operator-pending
+:nmap  :nnoremap :nunmap    Normal
+:vmap  :vnoremap :vunmap    Visual and Select
+:smap  :snoremap :sunmap    Select
+:xmap  :xnoremap :xunmap    Visual
+:omap  :onoremap :ounmap    Operator-pending
+:map!  :noremap! :unmap!    Insert and Command-line
+:imap  :inoremap :iunmap    Insert
+:lmap  :lnoremap :lunmap    Insert, Command-line, Lang-Arg
+:cmap  :cnoremap :cunmap    Command-line
+:tmap  :tnoremap :tunmap    Terminal
+```
+
 like shortcut or macro
 
 ```
@@ -366,6 +404,18 @@ like shortcut or macro
 ```
 
 * press `\ + p` quickly
+
+### to use Powershell
+
+```
+                        *shell-powershell*
+To use PowerShell: >
+    let &shell = executable('pwsh') ? 'pwsh' : 'powershell'
+    let &shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
+    let &shellredir = '-RedirectStandardOutput %s -NoNewWindow -Wait'
+    let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+    set shellquote= shellxquote=
+```
 
 ## PLUGIN SYS
 
@@ -412,3 +462,5 @@ Examples for the "stuff" filetype on Unix:
 ## FAQ
 
 ## TODO
+
+

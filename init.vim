@@ -49,15 +49,15 @@ set expandtab
 
 
 "---vim-plug
-call plug#begin('~/.local/share/nvim/plugged')
+" call plug#begin('~/.local/share/nvim/plugged')
 
-Plug 'morhetz/gruvbox'
-Plug 'preservim/nerdtree'
-Plug 'jiangmiao/auto-pairs'
-Plug 'preservim/nerdcommenter'
-Plug 'norcalli/nvim-colorizer.lua'
+" Plug 'morhetz/gruvbox'
+" Plug 'preservim/nerdtree'
+" Plug 'jiangmiao/auto-pairs'
+" Plug 'preservim/nerdcommenter'
+" Plug 'norcalli/nvim-colorizer.lua'
 
-call plug#end()
+" call plug#end()
 
 " --- gruvbox
 set background=dark    " Setting dark mode
@@ -65,9 +65,16 @@ colorscheme gruvbox
 
 " --- NERDTree
 " https://github.com/preservim/nerdtree
-nnoremap <leader>t :NERDTreeFocus<CR>
+" nnoremap <leader>t :NERDTreeFocus<CR>
 " nnoremap <C-n> :NERDTree<CR>
-nnoremap <C-t> :NERDTreeToggle<CR>
-nnoremap <C-f> :NERDTreeFind<CR>
+" nnoremap <C-t> :NERDTreeToggle<CR>
+" nnoremap <C-f> :NERDTreeFind<CR>
 
-let mapleader= "," " now <leader> is ,
+" let mapleader= "," " now <leader> is ,
+
+
+" let &shell = executable('pwsh') ? 'pwsh' : 'powershell'
+" let &shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
+" let &shellredir = '-RedirectStandardOutput %s -NoNewWindow -Wait'
+" let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+" set shellquote= shellxquote=
